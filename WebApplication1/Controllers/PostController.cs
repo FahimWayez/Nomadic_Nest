@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class PostController : ApiController
     {
-        [Logged]
+        //[Logged]
         [HttpPost]
         [Route("api/post/create")]
         public HttpResponseMessage Create(PostDTO u)
@@ -21,7 +21,7 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
 
         }
-        [Logged]
+        //[Logged]
         [HttpGet]
         [Route("api/post/{id}")]
         public HttpResponseMessage Get(int id)
@@ -36,7 +36,7 @@ namespace WebApplication1.Controllers
             var data = PostService.Get();
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
-        [Logged]
+        //[Logged]
         [HttpPut]
         [Route("api/post/update/{id}")]
         public HttpResponseMessage update(int id, PostDTO u)
@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
             var data = PostService.Update(id, u);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
-        [Logged]
+        //[Logged]
         [HttpDelete]
         [Route("api/post/delete/{id}")]
         public HttpResponseMessage Delete(int id)

@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class OrderController : ApiController
     {
-        [Logged]
+        //[Logged]
         [HttpPost]
         [Route("api/order/create")]
         public HttpResponseMessage Create(OrderDTO u)
@@ -21,7 +21,7 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
 
         }
-        [Logged]
+        //[Logged]
         [HttpGet]
         [Route("api/order/{id}")]
         public HttpResponseMessage Get(int id)
@@ -29,7 +29,7 @@ namespace WebApplication1.Controllers
             var data = OrderService.Get(id);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
-        [Logged]
+        //[Logged]
         [HttpGet]
         [Route("api/order/all")]
         public HttpResponseMessage Get()
@@ -45,7 +45,7 @@ namespace WebApplication1.Controllers
         //    var data = OrderService.Update(id, u);
         //    return Request.CreateResponse(HttpStatusCode.OK, data);
         //}
-        [Logged]
+        //[Logged]
         [HttpDelete]
         [Route("api/order/delete/{id}")]
         public HttpResponseMessage Delete(int id)

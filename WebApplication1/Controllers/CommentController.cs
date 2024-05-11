@@ -13,7 +13,7 @@ namespace WebApplication1.Controllers
     public class CommentController : ApiController
 
     {
-        [Logged]
+        //[Logged]
         [HttpPost]
         [Route("api/comment/create")]
         public HttpResponseMessage Create(CommentDTO u)
@@ -23,7 +23,7 @@ namespace WebApplication1.Controllers
 
         }
 
-        [Logged]
+        //[Logged]
         [HttpGet]
         [Route("api/comment/{id}")]
         public HttpResponseMessage Get(int id)
@@ -32,7 +32,7 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Logged]
+        //[Logged]
         [HttpGet]
         [Route("api/comment/all")]
         public HttpResponseMessage Get()
@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Logged]
+        //[Logged]
         [HttpPut]
         [Route("api/comment/update/{id}")]
         public HttpResponseMessage update(int id, CommentDTO u)
@@ -50,7 +50,7 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Logged]
+        //[Logged]
         [HttpDelete]
         [Route("api/comment/delete/{id}")]
         public HttpResponseMessage Delete(int id)

@@ -34,10 +34,10 @@ namespace DAL.EF.Models
 
 
         //Post entity
-        public virtual List<Post> Posts { get; set; }
-        public User() {
-            Posts = new List<Post>();
-        }
+        //public virtual List<Post> Posts { get; set; }
+        //public User() {
+        //    Posts = new List<Post>();
+        //}
 
         //Service entity
         //public virtual List<Service> Services { get; set; }

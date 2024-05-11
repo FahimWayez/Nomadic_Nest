@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [Logged]
+        //[Logged]
         [HttpGet]
         [Route("api/logout")]
         public HttpResponseMessage Logout()

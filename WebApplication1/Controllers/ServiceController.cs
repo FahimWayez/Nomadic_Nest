@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class ServiceController : ApiController
     {
-        [Logged]
+        //[Logged]
         [HttpPost]
         [Route("api/service/create")]
         public HttpResponseMessage Create(ServiceDTO u)
@@ -21,7 +21,7 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
 
         }
-        [Logged]
+        //[Logged]
         [HttpGet]
         [Route("api/service/{id}")]
         public HttpResponseMessage Get(int id)
@@ -36,7 +36,7 @@ namespace WebApplication1.Controllers
             var data = ServiceService.Get();
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
-        [Logged]
+        //[Logged]
         [HttpPut]
         [Route("api/service/update/{id}")]
         public HttpResponseMessage update(int id, ServiceDTO u)
@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
             var data = ServiceService.Update(id, u);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
-        [Logged]
+        //[Logged]
         [HttpDelete]
         [Route("api/service/delete/{id}")]
         public HttpResponseMessage Delete(int id)

@@ -37,7 +37,7 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Logged]
+        //[Logged]
         [HttpPut]
         [Route("api/user/update/{id}")]
         public HttpResponseMessage update(int id,UserDTO u)
@@ -46,7 +46,7 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
-        [Logged]
+        //[Logged]
         [HttpDelete]
         [Route("api/user/delete/{id}")]
         public HttpResponseMessage Delete(int id)
