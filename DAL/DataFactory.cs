@@ -15,28 +15,24 @@ namespace DAL
         {
             return new UserRepo();
         }
-
         public static IRepo<Post, int, bool> PostData()
         {
             return new PostRepo();
         }
-
         public static IRepo<Service, int, bool> ServiceData()
         {
             return new ServiceRepo();
         }
-
         public static IRepo<Comment, int, bool> CommentData()
         {
             return new CommentRepo();
         }
-
         public static IRepo<Order, int, bool> OrderData()
         {
             return new OrderRepo();
         }
-
-        public static IUser<User, string, string> UserData2() {
+        public static IChangePass<User, int, bool> UserData2() 
+        {
             return new UserRepo();
         }
         public static IAuth<bool> AuthData()

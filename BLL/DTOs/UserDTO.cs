@@ -20,6 +20,7 @@ namespace BLL.DTOs
         public string user_email { get; set; }
         [Required]
         public string user_password { get; set; }
+        public string ex_password { get; set; }
         //no need to initialize required
         public string user_phone_number { get; set; }
         [Required]

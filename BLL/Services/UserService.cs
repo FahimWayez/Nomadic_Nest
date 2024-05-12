@@ -80,37 +80,32 @@ namespace BLL.Services
             return DataFactory.UserData().Update(id,updatedUser);
         }
 
-        //public static UserDTO ChangePassword(int id, string exPass, string newPass)
-        //{
-        //    var res = DataFactory.UserData().(exPass, newPass);
+        public static bool ChangePassword(int id, UserDTO u)
+        {
 
-        //    if (res)
-        //    {
-        //        var token = new Token();
-        //        token.UserId = uname;
-        //        token.TokenCreate = DateTime.Now;
-        //        token.TokenKey = Guid.NewGuid().ToString();
-        //        var ret = DataFactory.TokenData().Insert(token);
-        //        if (ret != null)
-        //        {
-        //            var cfg = new MapperConfiguration(c => {
-        //                c.CreateMap<Token, TokenDTO>();
-        //            });
+            var existingUser = DataFactory.UserData2().Get(id);
+            if (existingUser == null){
+                return false;
+            }
+            if (existingUser.user_password != u.ex_password)
+            {
+                return false;
+            }
 
-        //            var mapper = new Mapper(cfg);
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<UserDTO, User>();
+            });
+            var mapper = new Mapper(config);
 
-        //            return mapper.Map<TokenDTO>(ret);
-        //        }
-        //    }
-        //    return null;
-        //}
+            var updatedUser = mapper.Map<User>(u);
 
+            return DataFactory.UserData2().ChangePassword(id,updatedUser);
+        }               
 
         public static bool Delete(int id)
         {
             return DataFactory.UserData().Delete(id);
         }
-
 
     }
 }

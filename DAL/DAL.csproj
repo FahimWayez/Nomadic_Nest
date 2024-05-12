@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DataFactory.cs" />
     <Compile Include="EF\Models\Comment.cs" />
     <Compile Include="EF\Models\Order.cs" />
@@ -63,7 +62,7 @@
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
     <Compile Include="Interfaces\IRepo2.cs" />
-    <Compile Include="Interfaces\IUser.cs" />
+    <Compile Include="Interfaces\IChangePass.cs" />
     <Compile Include="Migrations\202404271536527_initDB.cs" />
     <Compile Include="Migrations\202404271536527_initDB.Designer.cs">
       <DependentUpon>202404271536527_initDB.cs</DependentUpon>

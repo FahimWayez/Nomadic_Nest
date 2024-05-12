@@ -46,6 +46,14 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
+        [HttpPut]
+        [Route("api/user/change_pass/{id}")]
+        public HttpResponseMessage ChangePassword(int id, UserDTO u)
+        {
+            var data = UserService.ChangePassword(id, u);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
         //[Logged]
         [HttpDelete]
         [Route("api/user/delete/{id}")]

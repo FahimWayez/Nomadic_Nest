@@ -9,19 +9,14 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : Repo, IRepo<User, int, bool>, IAuth<bool>, IUser<User, string, string>
+    internal class UserRepo : Repo, IRepo<User, int, bool>, IAuth<bool>, IChangePass<User, int, bool>
     {
         public bool Authenticate(string unsername, string password)
         {
             var data = db.users.FirstOrDefault(u => u.user_name.Equals(unsername) && u.user_password.Equals(password));
             if (data != null) return true;
             return false;
-        }
-
-        public string ChangePassword(int id, string exPassword, string newPassword)
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public void Create(User obj)
         {
@@ -36,19 +31,16 @@ namespace DAL.Repos
             return db.SaveChanges() > 0;
             //throw new NotImplementedException();
         }
-
         public User Get(int id)
         {
             return db.users.Find(id);
             //throw new NotImplementedException();
         }
-
         public List<User> Get()
         {
             return db.users.ToList();
             //throw new NotImplementedException();
         }
-
         public bool Update(int id, User updatedUser)
         {
             var existingUser = Get(id);
@@ -71,20 +63,19 @@ namespace DAL.Repos
             return db.SaveChanges() > 0;
         }
 
+        public bool ChangePassword(int id, User obj)
+        {
+            var existingUser = Get(id);
+            if (existingUser == null)
+            {
+                return false;
+            }
 
+            existingUser.user_password = obj.user_password;            
 
-        //public string ChangePassword(int id, string exPassword, string newPassword)
-        //{
-        //    //var existingUser = Get(id);
-        //    //if (existingUser == null)
-        //    //{
-        //    //    return false;
-        //    //}
+            db.Entry(existingUser).State = EntityState.Modified;
+            return db.SaveChanges() > 0;
+        }
 
-        //    //existingUser.user_password = newPassword.user_password;
-
-        //    //db.Entry(existingUser).State = EntityState.Modified;
-        //    //return db.SaveChanges() > 0;
-        //}
     }
 }
