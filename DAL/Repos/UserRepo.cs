@@ -1,11 +1,8 @@
 ﻿using DAL.EF.Models;
 using DAL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
@@ -16,7 +13,7 @@ namespace DAL.Repos
             var data = db.users.FirstOrDefault(u => u.user_name.Equals(unsername) && u.user_password.Equals(password));
             if (data != null) return true;
             return false;
-        }        
+        }
 
         public void Create(User obj)
         {
@@ -55,9 +52,9 @@ namespace DAL.Repos
             //existingUser.user_password = updatedUser.user_password;
             existingUser.user_phone_number = updatedUser.user_phone_number;
             existingUser.user_city = updatedUser.user_city;
-            existingUser.user_email= updatedUser.user_email;
-            existingUser.user_gender= updatedUser.user_gender;
-            existingUser.role= updatedUser.role;
+            existingUser.user_email = updatedUser.user_email;
+            existingUser.user_gender = updatedUser.user_gender;
+            existingUser.role = updatedUser.role;
 
             db.Entry(existingUser).State = EntityState.Modified;
             return db.SaveChanges() > 0;
@@ -71,7 +68,7 @@ namespace DAL.Repos
                 return false;
             }
 
-            existingUser.user_password = obj.user_password;            
+            existingUser.user_password = obj.user_password;
 
             db.Entry(existingUser).State = EntityState.Modified;
             return db.SaveChanges() > 0;

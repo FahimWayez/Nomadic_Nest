@@ -1,11 +1,8 @@
 ﻿using DAL.EF.Models;
 using DAL.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
@@ -51,7 +48,7 @@ namespace DAL.Repos
             existingUser.service_location_from = updatedUser.service_location_from;
             existingUser.service_value = updatedUser.service_value;
             existingUser.service_status = updatedUser.service_status;
-            
+
 
             db.Entry(existingUser).State = EntityState.Modified;
             return db.SaveChanges() > 0;

@@ -1,28 +1,28 @@
-﻿using System;
-using DAL;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.EF.Models;
-using AutoMapper;
+﻿using AutoMapper;
 using BLL.DTOs;
+using DAL;
+using DAL.EF.Models;
+using System;
 
 namespace BLL.Services
 {
     public class AuthService
     {
-        public static TokenDTO Authenticate(string uname, string pass) {
-            var res = DataFactory.AuthData().Authenticate(uname,pass);
+        public static TokenDTO Authenticate(string uname, string pass)
+        {
+            var res = DataFactory.AuthData().Authenticate(uname, pass);
 
-            if (res) {
+            if (res)
+            {
                 var token = new Token();
                 token.UserId = uname;
                 token.TokenCreate = DateTime.Now;
                 token.TokenKey = Guid.NewGuid().ToString();
                 var ret = DataFactory.TokenData().Insert(token);
-                if (ret != null) {
-                    var cfg = new MapperConfiguration(c => {
+                if (ret != null)
+                {
+                    var cfg = new MapperConfiguration(c =>
+                    {
                         c.CreateMap<Token, TokenDTO>();
                     });
 
@@ -34,18 +34,19 @@ namespace BLL.Services
             return null;
         }
 
-        public static bool isTokenValid(string tokenKey) 
+        public static bool isTokenValid(string tokenKey)
         {
             var extokenkey = DataFactory.TokenData().Get(tokenKey);
 
-            if (extokenkey != null && extokenkey.TokenDestroy == null) { 
+            if (extokenkey != null && extokenkey.TokenDestroy == null)
+            {
                 return true;
             }
             return false;
-        
+
         }
 
-        public static bool Logout(string tokenKey) 
+        public static bool Logout(string tokenKey)
         {
             var extokenkey = DataFactory.TokenData().Get(tokenKey);
 
@@ -54,10 +55,10 @@ namespace BLL.Services
             {
                 return true;
             }
-            return false;        
-        } 
+            return false;
+        }
 
-        
+
     }
-    
+
 }
