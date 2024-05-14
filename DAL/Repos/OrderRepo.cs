@@ -4,12 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class OrderRepo: Repo, IRepo<Order, int, bool>
+    public class OrderRepo : Repo, IRepo<Order, int, bool>
     {
         public void Create(Order obj)
         {
@@ -37,6 +35,11 @@ namespace DAL.Repos
             //throw new NotImplementedException();
         }
 
+        public List<Order> Search(string term)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public bool Update(int id, Order updatedUser)
         {
             var existingUser = Get(id);
@@ -47,6 +50,25 @@ namespace DAL.Repos
 
             db.Entry(existingUser).State = EntityState.Modified;
             return db.SaveChanges() > 0;
+        }
+
+        public List<Order> Sort(string sortBy, bool ascending)
+        {
+            IQueryable<Order> query = db.orders;
+
+            switch (sortBy.ToLower())
+            {
+                case "order_created":
+                    query = ascending ? query.OrderBy(c => c.order_created) : query.OrderByDescending(c => c.order_created);
+                    break;
+                case "order_id":
+                    query = ascending ? query.OrderBy(c => c.order_Id) : query.OrderByDescending(c => c.order_Id);
+                    break;
+                default:
+                    throw new ArgumentException("Invalid sort field");
+            }
+
+            return query.ToList();
         }
     }
 }

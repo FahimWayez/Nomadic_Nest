@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
@@ -41,16 +39,37 @@ namespace DAL.Repos
         {
             var existingUser = Get(id);
             if (existingUser == null)
-            {               
+            {
                 return false;
             }
-            
+
             existingUser.post_title = updatedUser.post_title;
             existingUser.post_description = updatedUser.post_description;
             existingUser.post_location = updatedUser.post_location;
-            
+
             db.Entry(existingUser).State = EntityState.Modified;
             return db.SaveChanges() > 0;
+        }
+
+        public List<Post> Search(string term)
+        {
+            return db.posts.Where(u => u.post_description.Contains(term)).ToList();
+        }
+
+        public List<Post> Sort(string sortBy, bool ascending)
+        {
+            IQueryable<Post> query = db.posts;
+
+            switch (sortBy.ToLower())
+            {
+                case "post_created":
+                    query = ascending ? query.OrderBy(c => c.post_created) : query.OrderByDescending(c => c.post_created);
+                    break;
+                default:
+                    throw new ArgumentException("Invalid sort field");
+            }
+
+            return query.ToList();
         }
     }
 }

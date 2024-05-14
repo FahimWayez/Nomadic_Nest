@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
-using DAL.EF.Models;
 using DAL;
-using System;
+using DAL.EF.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -26,7 +22,8 @@ namespace BLL.Services
         }
         public static void Create(CommentDTO u)
         {
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<CommentDTO, Comment>();
             });
             var mapper = new Mapper(config);
@@ -37,7 +34,8 @@ namespace BLL.Services
         {
 
             var data = DataFactory.CommentData().Get(id);
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<Comment, CommentDTO>();
             });
             var mapper = new Mapper(config);
@@ -46,7 +44,8 @@ namespace BLL.Services
         public static List<CommentDTO> Get()
         {
             var data = DataFactory.CommentData().Get();
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<Comment, CommentDTO>();
             });
             var mapper = new Mapper(config);
@@ -62,7 +61,8 @@ namespace BLL.Services
                 return false;
             }
 
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<CommentDTO, Comment>();
             });
             var mapper = new Mapper(config);
@@ -79,5 +79,26 @@ namespace BLL.Services
             return DataFactory.CommentData().Delete(id);
         }
 
+        public static List<CommentDTO> Search(string term)
+        {
+            var data = DataFactory.CommentData().Search(term);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Comment, CommentDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<CommentDTO>>(data);
+        }
+
+        public static List<CommentDTO> Sort(string sortBy, bool ascending)
+        {
+            var data = DataFactory.CommentData().Sort(sortBy, ascending);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Comment, CommentDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<CommentDTO>>(data);
+        }
     }
 }

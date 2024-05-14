@@ -1,5 +1,6 @@
 ﻿using DAL.EF.Models;
 using DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -52,6 +53,27 @@ namespace DAL.Repos
 
             db.Entry(existingUser).State = EntityState.Modified;
             return db.SaveChanges() > 0;
+        }
+
+        public List<Service> Search(string term)
+        {
+            return db.services.Where(u => u.service_location_from.Contains(term) || u.service_title.Contains(term)).ToList();
+        }
+
+        public List<Service> Sort(string sortBy, bool ascending)
+        {
+            IQueryable<Service> query = db.services;
+
+            switch (sortBy.ToLower())
+            {
+                case "service_value":
+                    query = ascending ? query.OrderBy(c => c.service_value) : query.OrderByDescending(c => c.service_value);
+                    break;
+                default:
+                    throw new ArgumentException("Invalid sort field");
+            }
+
+            return query.ToList();
         }
     }
 }

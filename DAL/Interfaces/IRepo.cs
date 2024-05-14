@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DAL.Interfaces
 {
@@ -13,5 +9,9 @@ namespace DAL.Interfaces
         List<CLASS> Get();
         RET Update(int id, CLASS obj);
         RET Delete(ID id);
+
+        List<CLASS> Search(string term);
+
+        List<CLASS> Sort(string sortBy, bool ascending);
     }
 }

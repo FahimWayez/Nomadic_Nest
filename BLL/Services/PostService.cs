@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
-using DAL.EF.Models;
 using DAL;
-using System;
+using DAL.EF.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -26,7 +22,8 @@ namespace BLL.Services
         }
         public static void Create(PostDTO u)
         {
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<PostDTO, Post>();
             });
             var mapper = new Mapper(config);
@@ -37,7 +34,8 @@ namespace BLL.Services
         {
 
             var data = DataFactory.PostData().Get(id);
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<Post, PostDTO>();
             });
             var mapper = new Mapper(config);
@@ -46,7 +44,8 @@ namespace BLL.Services
         public static List<PostDTO> Get()
         {
             var data = DataFactory.PostData().Get();
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<Post, PostDTO>();
             });
             var mapper = new Mapper(config);
@@ -62,7 +61,8 @@ namespace BLL.Services
                 return false;
             }
 
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<PostDTO, Post>();
             });
             var mapper = new Mapper(config);
@@ -77,6 +77,17 @@ namespace BLL.Services
         public static bool Delete(int id)
         {
             return DataFactory.PostData().Delete(id);
+        }
+
+        public static List<PostDTO> Sort(string sortBy, bool ascending)
+        {
+            var data = DataFactory.PostData().Sort(sortBy, ascending);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Post, PostDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<PostDTO>>(data);
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using DAL.EF.Models;
 using DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -74,5 +75,16 @@ namespace DAL.Repos
             return db.SaveChanges() > 0;
         }
 
+        public List<User> Search(string term)
+        {
+            var result = db.users.Where(u => u.user_name.Contains(term) || u.user_email.Contains(term)).ToList();
+            Console.WriteLine($"Search results for '{term}': {result.Count} items found.");
+            return result;
+        }
+
+        public List<User> Sort(string sortBy, bool ascending)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

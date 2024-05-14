@@ -1,17 +1,31 @@
 ﻿using BLL.DTOs;
 using BLL.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApplication1.Auth;
 
 namespace WebApplication1.Controllers
 {
     public class OrderController : ApiController
     {
+
+        //[Logged]
+        [HttpGet]
+        [Route("api/order/sort")]
+        public HttpResponseMessage Sort([FromUri] string sortBy, [FromUri] bool ascending)
+        {
+            try
+            {
+                var data = OrderService.Sort(sortBy, ascending);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (ArgumentException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
         //[Logged]
         [HttpPost]
         [Route("api/order/create")]

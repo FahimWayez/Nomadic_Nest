@@ -4,9 +4,6 @@ using DAL;
 using DAL.EF.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -26,7 +23,8 @@ namespace BLL.Services
         }
         public static void Create(UserDTO u)
         {
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<UserDTO, User>();
             });
             var mapper = new Mapper(config);
@@ -37,7 +35,8 @@ namespace BLL.Services
         {
 
             var data = DataFactory.UserData().Get(id);
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<User, UserDTO>();
             });
             var mapper = new Mapper(config);
@@ -64,7 +63,8 @@ namespace BLL.Services
         public static UserPostDTO GetUserPost(int id)
         {
             var data = DataFactory.UserData().Get(id);
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<User, UserPostDTO>();
                 cfg.CreateMap<Post, PostDTO>();
             });
@@ -72,30 +72,32 @@ namespace BLL.Services
             return mapper.Map<UserPostDTO>(data);
         }
 
-        public static bool Update(int id,UserDTO u)
+        public static bool Update(int id, UserDTO u)
         {
-            
+
             var existingUser = DataFactory.UserData().Get(id);
             if (existingUser == null)
             {
-                return false; 
+                return false;
             }
-            
-            var config = new MapperConfiguration(cfg => {
+
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<UserDTO, User>();
             });
             var mapper = new Mapper(config);
-            
+
             var updatedUser = mapper.Map<User>(u);
-            
-            return DataFactory.UserData().Update(id,updatedUser);
+
+            return DataFactory.UserData().Update(id, updatedUser);
         }
 
         public static bool ChangePassword(int id, UserDTO u)
         {
 
             var existingUser = DataFactory.UserData2().Get(id);
-            if (existingUser == null){
+            if (existingUser == null)
+            {
                 return false;
             }
             if (existingUser.user_password != u.ex_password)
@@ -103,20 +105,36 @@ namespace BLL.Services
                 return false;
             }
 
-            var config = new MapperConfiguration(cfg => {
+            var config = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<UserDTO, User>();
             });
             var mapper = new Mapper(config);
 
             var updatedUser = mapper.Map<User>(u);
 
-            return DataFactory.UserData2().ChangePassword(id,updatedUser);
-        }               
+            return DataFactory.UserData2().ChangePassword(id, updatedUser);
+        }
 
         public static bool Delete(int id)
         {
             return DataFactory.UserData().Delete(id);
         }
 
+
+        public static List<UserDTO> Search(string term)
+        {
+            var data = DataFactory.UserData().Search(term);
+            Console.WriteLine($"Data retrieved from DAL: {data.Count} items.");
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<User, UserDTO>();
+            });
+            var mapper = new Mapper(config);
+            var mappedData = mapper.Map<List<UserDTO>>(data);
+            Console.WriteLine($"Mapped data: {mappedData.Count} items.");
+
+            return mappedData;
+        }
     }
 }

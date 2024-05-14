@@ -1,17 +1,44 @@
 ﻿using BLL.DTOs;
 using BLL.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApplication1.Auth;
 
 namespace WebApplication1.Controllers
 {
     public class ServiceController : ApiController
     {
+
+        [HttpGet]
+        [Route("api/service/sort")]
+        public HttpResponseMessage Sort([FromUri] string sortBy, [FromUri] bool ascending)
+        {
+            try
+            {
+                var data = ServiceService.Sort(sortBy, ascending);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (ArgumentException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        //[Logged]
+        [HttpGet]
+        [Route("api/service/search")]
+        public HttpResponseMessage Search([FromUri] string term)
+        {
+            var data = ServiceService.Search(term);
+            if (data == null || !data.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, "No Services found.");
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
         //[Logged]
         [HttpPost]
         [Route("api/service/create")]

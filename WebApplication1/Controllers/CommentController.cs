@@ -1,12 +1,9 @@
 ﻿using BLL.DTOs;
 using BLL.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApplication1.Auth;
 
 namespace WebApplication1.Controllers
 {
@@ -57,6 +54,31 @@ namespace WebApplication1.Controllers
         {
             var data = CommentService.Delete(id);
             return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+
+        [HttpGet]
+        [Route("api/comment/search")]
+        public HttpResponseMessage Search([FromUri] string term)
+        {
+            var data = CommentService.Search(term);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+
+        [HttpGet]
+        [Route("api/comment/sort")]
+        public HttpResponseMessage Sort([FromUri] string sortBy, [FromUri] bool ascending)
+        {
+            try
+            {
+                var data = CommentService.Sort(sortBy, ascending);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (ArgumentException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
     }
 }

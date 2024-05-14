@@ -4,12 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class CommentRepo : Repo , IRepo<Comment, int , bool>
+    internal class CommentRepo : Repo, IRepo<Comment, int, bool>
     {
         public void Create(Comment obj)
         {
@@ -46,10 +44,37 @@ namespace DAL.Repos
             }
 
             existingUser.comment = updatedUser.comment;
-            
+
 
             db.Entry(existingUser).State = EntityState.Modified;
             return db.SaveChanges() > 0;
+        }
+
+        public List<Comment> Search(string term)
+        {
+            return db.comments.Where(c => c.comment.Contains(term)).ToList();
+        }
+
+        public List<Comment> Sort(string sortBy, bool ascending)
+        {
+            IQueryable<Comment> query = db.comments;
+
+            switch (sortBy.ToLower())
+            {
+                case "comment_created":
+                    query = ascending ? query.OrderBy(c => c.comment_created) : query.OrderByDescending(c => c.comment_created);
+                    break;
+                case "comment_id":
+                    query = ascending ? query.OrderBy(c => c.comment_Id) : query.OrderByDescending(c => c.comment_Id);
+                    break;
+                case "comment":
+                    query = ascending ? query.OrderBy(c => c.comment) : query.OrderByDescending(c => c.comment);
+                    break;
+                default:
+                    throw new ArgumentException("Invalid sort field");
+            }
+
+            return query.ToList();
         }
     }
 }
