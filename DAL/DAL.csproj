@@ -83,9 +83,9 @@
     <Compile Include="Migrations\202404280648046_initDBOrder.Designer.cs">
       <DependentUpon>202404280648046_initDBOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202405100138043_tokendb.cs" />
-    <Compile Include="Migrations\202405100138043_tokendb.Designer.cs">
-      <DependentUpon>202405100138043_tokendb.cs</DependentUpon>
+    <Compile Include="Migrations\202405140938455_TokenDB.cs" />
+    <Compile Include="Migrations\202405140938455_TokenDB.Designer.cs">
+      <DependentUpon>202405140938455_TokenDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,8 +117,8 @@
     <EmbeddedResource Include="Migrations\202404280648046_initDBOrder.resx">
       <DependentUpon>202404280648046_initDBOrder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405100138043_tokendb.resx">
-      <DependentUpon>202405100138043_tokendb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405140938455_TokenDB.resx">
+      <DependentUpon>202405140938455_TokenDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
