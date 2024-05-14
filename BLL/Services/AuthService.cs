@@ -3,6 +3,7 @@ using BLL.DTOs;
 using DAL;
 using DAL.EF.Models;
 using System;
+using System.Collections.Generic;
 
 namespace BLL.Services
 {
@@ -32,6 +33,17 @@ namespace BLL.Services
                 }
             }
             return null;
+        }
+
+        public static List<TokenDTO> Get()
+        {
+            var data = DataFactory.TokenData().Get();
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Token, TokenDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<TokenDTO>>(data);
+
         }
 
         public static bool isTokenValid(string tokenKey)

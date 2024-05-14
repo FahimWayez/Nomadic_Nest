@@ -30,6 +30,14 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/token/all")]
+        public HttpResponseMessage Get()
+        {
+            var data = AuthService.Get();
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
         //[Logged]
         [HttpGet]
         [Route("api/logout")]

@@ -29,6 +29,8 @@ namespace WebApplication1.Controllers
             var data = PostService.Get(id);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
+        
+
         [HttpGet]
         [Route("api/post/all")]
         public HttpResponseMessage Get()

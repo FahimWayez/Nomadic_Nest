@@ -32,6 +32,14 @@ namespace DAL.EF.Models
         //no need to initialize required, automatically insert value through logic
         public string role { get; set; }
 
+        public virtual ICollection<Post> posts { get; set; }
+
+        public User()
+        {
+            posts = new List<Post>();
+        }
+
+
 
         //Post entity
         //public virtual List<Post> Posts { get; set; }

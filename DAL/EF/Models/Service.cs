@@ -32,5 +32,7 @@ namespace DAL.EF.Models
         public int UserId { get; set; }
 
         public virtual User User { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+
     }
 }

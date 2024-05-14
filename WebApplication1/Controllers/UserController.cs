@@ -37,6 +37,14 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
+        [HttpGet]
+        [Route("api/user/{id}/posts")]
+        public HttpResponseMessage GetUserPost(int id)
+        {
+            var data = UserService.GetUserPost(id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
         //[Logged]
         [HttpPut]
         [Route("api/user/update/{id}")]

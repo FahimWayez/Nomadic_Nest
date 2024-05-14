@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace BLL.DTOs
 {
-    public class UserPostDTO
+    public class UserPostDTO : UserDTO
     {
         //Post entity
-        public List<PostDTO> Posts { get; set; }
+        public List<PostDTO> posts { get; set; }
         public UserPostDTO()
         {
-            Posts = new List<PostDTO>();
+            posts = new List<PostDTO>();
         }
 
     }
