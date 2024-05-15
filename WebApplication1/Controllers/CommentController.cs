@@ -98,5 +98,14 @@ namespace WebApplication1.Controllers
         }
 
 
+        [HttpGet]
+        [Route("api/comment/paged")]
+        public HttpResponseMessage GetPaged([FromUri] int pageNumber, [FromUri] int pageSize)
+        {
+            var data = CommentService.GetPaged(pageNumber, pageSize);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+
     }
 }

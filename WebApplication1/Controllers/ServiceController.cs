@@ -10,6 +10,14 @@ namespace WebApplication1.Controllers
 {
     public class ServiceController : ApiController
     {
+        [HttpGet]
+        [Route("api/service/paged")]
+        public HttpResponseMessage GetPaged([FromUri] int pageNumber, [FromUri] int pageSize)
+        {
+            var data = ServiceService.GetPaged(pageNumber, pageSize);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
 
         [HttpGet]
         [Route("api/service/filter")]

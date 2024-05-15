@@ -9,6 +9,13 @@ namespace WebApplication1.Controllers
 {
     public class UserController : ApiController
     {
+        [HttpGet]
+        [Route("api/user/paged")]
+        public HttpResponseMessage GetPaged([FromUri] int pageNumber, [FromUri] int pageSize)
+        {
+            var data = UserService.GetPaged(pageNumber, pageSize);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
 
         //[Logged]
         [HttpGet]

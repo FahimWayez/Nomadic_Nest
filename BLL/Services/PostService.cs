@@ -101,5 +101,16 @@ namespace BLL.Services
             return mapper.Map<List<PostDTO>>(data);
         }
 
+        public static List<PostDTO> GetPaged(int pageNumber, int pageSize)
+        {
+            var data = DataFactory.PostData().GetPaged(pageNumber, pageSize);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Post, PostDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<PostDTO>>(data);
+        }
+
     }
 }

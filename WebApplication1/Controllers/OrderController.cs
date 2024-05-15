@@ -67,5 +67,14 @@ namespace WebApplication1.Controllers
             var data = OrderService.Delete(id);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
+
+
+        [HttpGet]
+        [Route("api/order/paged")]
+        public HttpResponseMessage GetPaged([FromUri] int pageNumber, [FromUri] int pageSize)
+        {
+            var data = OrderService.GetPaged(pageNumber, pageSize);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
     }
 }

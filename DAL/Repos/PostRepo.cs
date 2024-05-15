@@ -93,5 +93,14 @@ namespace DAL.Repos
 
             return query.ToList();
         }
+
+        public List<Post> GetPaged(int pageNumber, int pageSize)
+        {
+            return db.posts
+                     .OrderBy(c => c.post_id)
+                     .Skip((pageNumber - 1) * pageSize)
+                     .Take(pageSize)
+                     .ToList();
+        }
     }
 }

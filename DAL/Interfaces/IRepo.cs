@@ -15,6 +15,8 @@ namespace DAL.Interfaces
         List<CLASS> Sort(string sortBy, bool ascending);
 
         List<CLASS> Filter(string filterBy, string value);
+
+        List<CLASS> GetPaged(int pageNumber, int pageSize);
     }
 
 }

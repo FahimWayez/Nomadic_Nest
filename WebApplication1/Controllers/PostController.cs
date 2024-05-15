@@ -9,6 +9,13 @@ namespace WebApplication1.Controllers
 {
     public class PostController : ApiController
     {
+        [HttpGet]
+        [Route("api/post/paged")]
+        public HttpResponseMessage GetPaged([FromUri] int pageNumber, [FromUri] int pageSize)
+        {
+            var data = PostService.GetPaged(pageNumber, pageSize);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
 
         [HttpGet]
         [Route("api/post/filter")]
@@ -82,5 +89,6 @@ namespace WebApplication1.Controllers
             var data = PostService.Delete(id);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
+
     }
 }

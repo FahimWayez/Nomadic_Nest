@@ -112,5 +112,16 @@ namespace BLL.Services
             var mapper = new Mapper(config);
             return mapper.Map<List<CommentDTO>>(data);
         }
+
+        public static List<CommentDTO> GetPaged(int pageNumber, int pageSize)
+        {
+            var data = DataFactory.CommentData().GetPaged(pageNumber, pageSize);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Comment, CommentDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<CommentDTO>>(data);
+        }
     }
 }

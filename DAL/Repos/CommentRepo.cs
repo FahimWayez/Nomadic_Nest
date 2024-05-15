@@ -99,5 +99,14 @@ namespace DAL.Repos
             return query.ToList();
         }
 
+        public List<Comment> GetPaged(int pageNumber, int pageSize)
+        {
+            return db.comments
+                     .OrderBy(c => c.comment_Id)
+                     .Skip((pageNumber - 1) * pageSize)
+                     .Take(pageSize)
+                     .ToList();
+        }
+
     }
 }

@@ -91,5 +91,14 @@ namespace DAL.Repos
         {
             throw new NotImplementedException();
         }
+
+        public List<User> GetPaged(int pageNumber, int pageSize)
+        {
+            return db.users
+                     .OrderBy(c => c.user_id)
+                     .Skip((pageNumber - 1) * pageSize)
+                     .Take(pageSize)
+                     .ToList();
+        }
     }
 }

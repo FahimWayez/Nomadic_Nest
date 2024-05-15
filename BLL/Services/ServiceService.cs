@@ -111,5 +111,16 @@ namespace BLL.Services
             var mapper = new Mapper(config);
             return mapper.Map<List<ServiceDTO>>(data);
         }
+
+        public static List<ServiceDTO> GetPaged(int pageNumber, int pageSize)
+        {
+            var data = DataFactory.ServiceData().GetPaged(pageNumber, pageSize);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Service, ServiceDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<ServiceDTO>>(data);
+        }
     }
 }
