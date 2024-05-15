@@ -103,5 +103,28 @@ namespace DAL.Repos
                      .Take(pageSize)
                      .ToList();
         }
+
+        public bool Vote(int id, bool upvote)
+        {
+            var service = Get(id);
+            if (service == null)
+            {
+                return false;
+            }
+
+            if (upvote)
+            {
+                service.Votes++;
+            }
+            else
+            {
+                service.Votes--;
+            }
+
+            db.Entry(service).State = EntityState.Modified;
+            return db.SaveChanges() > 0;
+        }
+
+
     }
 }

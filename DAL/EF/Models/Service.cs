@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.EF.Models
 {
@@ -22,7 +18,7 @@ namespace DAL.EF.Models
         [Required]
         public string service_location_from { get; set; }
         [Required]
-        public float service_value { get; set; } 
+        public float service_value { get; set; }
 
         public string service_status { get; set; }
 
@@ -33,6 +29,8 @@ namespace DAL.EF.Models
 
         public virtual User User { get; set; }
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+
+        public int Votes { get; set; }
 
     }
 }

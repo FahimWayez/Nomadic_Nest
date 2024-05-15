@@ -102,5 +102,10 @@ namespace DAL.Repos
                      .Take(pageSize)
                      .ToList();
         }
+
+        public bool Vote(int id, bool upvote)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -122,5 +122,10 @@ namespace BLL.Services
             var mapper = new Mapper(config);
             return mapper.Map<List<ServiceDTO>>(data);
         }
+
+        public static bool Vote(int id, bool upvote)
+        {
+            return DataFactory.ServiceData().Vote(id, upvote);
+        }
     }
 }

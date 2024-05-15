@@ -7,13 +7,13 @@ namespace DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class OrderDetailsDB : IMigrationMetadata
+    public sealed partial class serviceVoting : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(OrderDetailsDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(serviceVoting));
         
         string IMigrationMetadata.Id
         {
-            get { return "202405141442118_OrderDetailsDB"; }
+            get { return "202405150054181_serviceVoting"; }
         }
         
         string IMigrationMetadata.Source

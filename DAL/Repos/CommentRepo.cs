@@ -108,5 +108,9 @@ namespace DAL.Repos
                      .ToList();
         }
 
+        public bool Vote(int id, bool upvote)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -10,6 +10,22 @@ namespace WebApplication1.Controllers
 {
     public class ServiceController : ApiController
     {
+
+        [HttpPost]
+        [Route("api/service/vote/{id}")]
+        public HttpResponseMessage Vote(int id, [FromUri] bool upvote)
+        {
+            var result = ServiceService.Vote(id, upvote);
+            if (result)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Service ID or voting operation failed");
+            }
+        }
+
         [HttpGet]
         [Route("api/service/paged")]
         public HttpResponseMessage GetPaged([FromUri] int pageNumber, [FromUri] int pageSize)

@@ -17,6 +17,8 @@ namespace DAL.Interfaces
         List<CLASS> Filter(string filterBy, string value);
 
         List<CLASS> GetPaged(int pageNumber, int pageSize);
+
+        RET Vote(ID id, bool upvote);
     }
 
 }

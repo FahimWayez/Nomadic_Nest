@@ -92,9 +92,9 @@
     <Compile Include="Migrations\202405141156336_Userpost.Designer.cs">
       <DependentUpon>202405141156336_Userpost.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202405141442118_OrderDetailsDB.cs" />
-    <Compile Include="Migrations\202405141442118_OrderDetailsDB.Designer.cs">
-      <DependentUpon>202405141442118_OrderDetailsDB.cs</DependentUpon>
+    <Compile Include="Migrations\202405150054181_serviceVoting.cs" />
+    <Compile Include="Migrations\202405150054181_serviceVoting.designer.cs">
+      <DependentUpon>202405150054181_serviceVoting.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,8 +132,8 @@
     <EmbeddedResource Include="Migrations\202405141156336_Userpost.resx">
       <DependentUpon>202405141156336_Userpost.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202405141442118_OrderDetailsDB.resx">
-      <DependentUpon>202405141442118_OrderDetailsDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202405150054181_serviceVoting.resx">
+      <DependentUpon>202405150054181_serviceVoting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
