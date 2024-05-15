@@ -20,10 +20,10 @@ namespace BLL.DTOs
         public DateTime comment_created { get; set; } = DateTime.Now;
 
         //post Entity
-        [ForeignKey("Post")]
+        //[ForeignKey("Post")]
         public int PostId { get; set; }
 
-        public virtual Post Post { get; set; }
+        //public virtual Post Post { get; set; }
 
     }
 }

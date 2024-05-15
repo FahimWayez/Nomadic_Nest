@@ -24,10 +24,10 @@ namespace BLL.DTOs
 
 
         //User Entity
-        [ForeignKey("User")]
+        //[ForeignKey("User")]
         public int UserId { get; set; }
 
-        public virtual User User { get; set; }
+        //public virtual User User { get; set; }*/
 
         public int Votes { get; set; }
     }
