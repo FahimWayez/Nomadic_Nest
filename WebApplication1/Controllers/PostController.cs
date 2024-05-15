@@ -73,6 +73,15 @@ namespace WebApplication1.Controllers
             var data = PostService.Get();
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
+
+        [HttpGet]
+        [Route("api/post/{id}/comments")]
+        public HttpResponseMessage GetPostComment(int id)
+        {
+            var data = PostService.GetPostComment(id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
         //[Logged]
         [HttpPut]
         [Route("api/post/update/{id}")]

@@ -52,6 +52,18 @@ namespace BLL.Services
             return mapper.Map<List<PostDTO>>(data);
 
         }
+
+        public static PostCommentDTO GetPostComment(int id)
+        {
+            var data = DataFactory.PostData().Get(id);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Post, PostCommentDTO>();
+                cfg.CreateMap<Comment, CommentDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<PostCommentDTO>(data);
+        }
         public static bool Update(int id, PostDTO u)
         {
 

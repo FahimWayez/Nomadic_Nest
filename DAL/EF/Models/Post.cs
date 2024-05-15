@@ -28,7 +28,13 @@ namespace DAL.EF.Models
 
         public virtual User User { get; set; }
 
+        public virtual ICollection<Comment> comments { get; set; }
 
-        
+        public Post()
+        {
+            comments = new List<Comment>();
+            
+        }
+
     }
 }

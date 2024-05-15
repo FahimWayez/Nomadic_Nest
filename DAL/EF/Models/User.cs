@@ -33,10 +33,12 @@ namespace DAL.EF.Models
         public string role { get; set; }
 
         public virtual ICollection<Post> posts { get; set; }
+        public virtual ICollection<Service> services { get; set; }
 
         public User()
         {
             posts = new List<Post>();
+            services = new List<Service>();
         }
 
 

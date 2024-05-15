@@ -72,6 +72,18 @@ namespace BLL.Services
             return mapper.Map<UserPostDTO>(data);
         }
 
+        public static UserServiceDTO GetUserService(int id)
+        {
+            var data = DataFactory.UserData().Get(id);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<User, UserServiceDTO>();
+                cfg.CreateMap<Service, ServiceDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<UserServiceDTO>(data);
+        }
+
         public static bool Update(int id, UserDTO u)
         {
 

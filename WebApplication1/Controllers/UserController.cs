@@ -63,6 +63,14 @@ namespace WebApplication1.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
+        [HttpGet]
+        [Route("api/user/{id}/services")]
+        public HttpResponseMessage GetUserServer(int id)
+        {
+            var data = UserService.GetUserService(id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
         //[Logged]
         [HttpPut]
         [Route("api/user/update/{id}")]
