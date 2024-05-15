@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script>
+	var app=angular.module("my-app",[])
+	app.controller('loginCtrl',function($scope, $http){
+		$scope.login=function(){
+			var v = $scope.l;
+			$http.post("https://localhost:44341/api/login",v).then(function(resp){
+				debugger;
+			},function(err) {
+		});
+	};  
+	
+	});
+	
+</script>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body ng-app="my-app">
+
+<div ng-controller="loginCtrl">
+	<form ng-submit="login()">
+		<input type="text" ng-model="l.Uname" placeholder="Username"> <br>
+		<input type="password" ng-model="l.Password" placeholder="Password"> <br>
+		<input type="submit">
+	</form> 
+</div>
+
+</body>
+</html>
