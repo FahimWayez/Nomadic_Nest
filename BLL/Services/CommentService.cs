@@ -100,5 +100,17 @@ namespace BLL.Services
             var mapper = new Mapper(config);
             return mapper.Map<List<CommentDTO>>(data);
         }
+
+
+        public static List<CommentDTO> Filter(string filterBy, string value)
+        {
+            var data = DataFactory.CommentData().Filter(filterBy, value);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Comment, CommentDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<CommentDTO>>(data);
+        }
     }
 }

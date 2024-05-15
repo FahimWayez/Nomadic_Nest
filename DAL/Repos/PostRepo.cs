@@ -71,5 +71,27 @@ namespace DAL.Repos
 
             return query.ToList();
         }
+
+        public List<Post> Filter(string filterBy, string value)
+        {
+            IQueryable<Post> query = db.posts;
+
+            switch (filterBy.ToLower())
+            {
+                case "post_created":
+                    if (DateTime.TryParse(value, out DateTime postCreated))
+                    {
+                        query = query.Where(c => DbFunctions.TruncateTime(c.post_created) == postCreated.Date);
+                    }
+                    break;
+                case "post_location":
+                    query = query.Where(c => c.post_location.Contains(value));
+                    break;
+                default:
+                    throw new ArgumentException("Invalid filter field");
+            }
+
+            return query.ToList();
+        }
     }
 }

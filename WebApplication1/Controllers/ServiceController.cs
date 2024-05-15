@@ -12,6 +12,21 @@ namespace WebApplication1.Controllers
     {
 
         [HttpGet]
+        [Route("api/service/filter")]
+        public HttpResponseMessage Filter([FromUri] string filterBy, [FromUri] string value)
+        {
+            try
+            {
+                var data = ServiceService.Filter(filterBy, value);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (ArgumentException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpGet]
         [Route("api/service/sort")]
         public HttpResponseMessage Sort([FromUri] string sortBy, [FromUri] bool ascending)
         {

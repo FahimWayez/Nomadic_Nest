@@ -90,5 +90,16 @@ namespace BLL.Services
             return mapper.Map<List<PostDTO>>(data);
         }
 
+        public static List<PostDTO> Filter(string filterBy, string value)
+        {
+            var data = DataFactory.PostData().Filter(filterBy, value);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Post, PostDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<PostDTO>>(data);
+        }
+
     }
 }

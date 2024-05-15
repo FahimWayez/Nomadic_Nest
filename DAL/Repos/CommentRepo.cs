@@ -67,14 +67,37 @@ namespace DAL.Repos
                 case "comment_id":
                     query = ascending ? query.OrderBy(c => c.comment_Id) : query.OrderByDescending(c => c.comment_Id);
                     break;
-                case "comment":
-                    query = ascending ? query.OrderBy(c => c.comment) : query.OrderByDescending(c => c.comment);
-                    break;
                 default:
                     throw new ArgumentException("Invalid sort field");
             }
 
             return query.ToList();
         }
+
+        public List<Comment> Filter(string filterBy, string value)
+        {
+            IQueryable<Comment> query = db.comments;
+
+            switch (filterBy.ToLower())
+            {
+                case "postid":
+                    if (int.TryParse(value, out int postId))
+                    {
+                        query = query.Where(c => c.PostId == postId);
+                    }
+                    break;
+                case "comment_created":
+                    if (DateTime.TryParse(value, out DateTime commentCreated))
+                    {
+                        query = query.Where(c => DbFunctions.TruncateTime(c.comment_created) == commentCreated.Date);
+                    }
+                    break;
+                default:
+                    throw new ArgumentException("Invalid filter field");
+            }
+
+            return query.ToList();
+        }
+
     }
 }

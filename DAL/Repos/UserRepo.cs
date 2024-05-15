@@ -86,5 +86,10 @@ namespace DAL.Repos
         {
             throw new NotImplementedException();
         }
+
+        public List<User> Filter(string filterBy, string value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

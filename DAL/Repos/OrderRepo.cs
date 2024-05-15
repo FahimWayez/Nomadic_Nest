@@ -70,5 +70,24 @@ namespace DAL.Repos
 
             return query.ToList();
         }
+
+        public List<Order> Filter(string filterBy, string value)
+        {
+            IQueryable<Order> query = db.orders;
+
+            switch (filterBy.ToLower())
+            {
+                case "order_created":
+                    if (DateTime.TryParse(value, out DateTime orderCreated))
+                    {
+                        query = query.Where(c => DbFunctions.TruncateTime(c.order_created) == orderCreated.Date);
+                    }
+                    break;
+                default:
+                    throw new ArgumentException("Invalid filter field");
+            }
+
+            return query.ToList();
+        }
     }
 }

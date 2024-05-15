@@ -101,5 +101,15 @@ namespace BLL.Services
             var mapper = new Mapper(config);
             return mapper.Map<List<ServiceDTO>>(data);
         }
+        public static List<ServiceDTO> Filter(string filterBy, string value)
+        {
+            var data = DataFactory.ServiceData().Filter(filterBy, value);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Service, ServiceDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<ServiceDTO>>(data);
+        }
     }
 }

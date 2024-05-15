@@ -13,5 +13,8 @@ namespace DAL.Interfaces
         List<CLASS> Search(string term);
 
         List<CLASS> Sort(string sortBy, bool ascending);
+
+        List<CLASS> Filter(string filterBy, string value);
     }
+
 }

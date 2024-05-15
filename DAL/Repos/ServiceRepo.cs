@@ -75,5 +75,24 @@ namespace DAL.Repos
 
             return query.ToList();
         }
+
+        public List<Service> Filter(string filterBy, string value)
+        {
+            IQueryable<Service> query = db.services;
+
+            switch (filterBy.ToLower())
+            {
+                case "service_status":
+                    query = query.Where(c => c.service_status.Contains(value));
+                    break;
+                case "service_location_from":
+                    query = query.Where(c => c.service_location_from.Contains(value));
+                    break;
+                default:
+                    throw new ArgumentException("Invalid filter field");
+            }
+
+            return query.ToList();
+        }
     }
 }

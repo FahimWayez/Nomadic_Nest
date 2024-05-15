@@ -88,5 +88,16 @@ namespace BLL.Services
             var mapper = new Mapper(config);
             return mapper.Map<List<OrderDTO>>(data);
         }
+
+        public static List<OrderDTO> Filter(string filterBy, string value)
+        {
+            var data = DataFactory.OrderData().Filter(filterBy, value);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Order, OrderDTO>();
+            });
+            var mapper = new Mapper(config);
+            return mapper.Map<List<OrderDTO>>(data);
+        }
     }
 }
